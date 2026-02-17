@@ -1,0 +1,14 @@
+
+services:
+  kuidpage:
+    build: .
+    container_name: kuidpage
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - kuid-network
+
+networks:
+  kuid-network:
+    driver: bridge
