@@ -1,0 +1,7 @@
+{
+  "name": "KUID - Endereçamento Digital",
+  "description": "Uma landing page moderna e institucional para a KUID, a infraestrutura de endereçamento digital que traz identidade e localização precisa para todos.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
