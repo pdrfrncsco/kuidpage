@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MapPin, Facebook, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4 text-sm text-slate-500">
               <li><a href="#" className="hover:text-tech-green transition-colors">Como Funciona</a></li>
               <li><a href="#" className="hover:text-tech-green transition-colors">Funcionalidades</a></li>
-              <li><a href="#" className="hover:text-tech-green transition-colors">API para Desenvolvedores</a></li>
+              <li><a href="#" className="hover:text-tech-green transition-colors">API para Integração</a></li>
               <li><a href="#" className="hover:text-tech-green transition-colors">Casos de Uso</a></li>
             </ul>
           </div>
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
               <li><a href="#" className="hover:text-tech-green transition-colors">Sobre Nós</a></li>
               <li><a href="#" className="hover:text-tech-green transition-colors">Termos e Condições</a></li>
               <li><a href="#" className="hover:text-tech-green transition-colors">Política de Privacidade</a></li>
-              <li><a href="#" className="hover:text-tech-green transition-colors">Trabalhe Conosco</a></li>
+              <li><a href="#" className="hover:text-tech-green transition-colors">Trabalhe Connosco</a></li>
             </ul>
           </div>
 
@@ -48,12 +48,12 @@ const Footer: React.FC = () => {
             <ul className="space-y-4 text-sm text-slate-500">
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-tech-green" />
-                <span>contacto@kuid.ao</span>
+                <span>ndeasdigital@gmail.com</span>
               </li>
-              <li className="text-xs leading-relaxed italic">
-                Edifício KUID Center, Luanda, Angola. <br />
-                AO-LUA-LUA-QJLK
-              </li>
+              <li><a href="#" className="hover:text-tech-green transition-colors text-xs leading-relaxed italic">
+                Luanda, Angola. <br />
+                AO-LUA-LUA-EEJT
+              </a></li>
             </ul>
           </div>
         </div>

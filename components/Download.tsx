@@ -16,7 +16,7 @@ const Download: React.FC = () => {
           </p>
           
           <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
-            <a href="#" className="w-full lg:w-auto flex items-center justify-center gap-4 bg-white text-slate-900 px-8 py-5 rounded-2xl font-black text-lg hover:bg-slate-200 transition-all transform hover:-translate-y-1 active:translate-y-0">
+            <a href="https://github.com/pdrfrncsco/kuid-app/releases/download/v1.0.2/kuidapp-beta-v1-0-2.apk" className="w-full lg:w-auto flex items-center justify-center gap-4 bg-white text-slate-900 px-8 py-5 rounded-2xl font-black text-lg hover:bg-slate-200 transition-all transform hover:-translate-y-1 active:translate-y-0">
               <DownloadIcon size={24} /> 
               <div className="text-left">
                 <p className="text-[10px] uppercase font-bold text-slate-500 leading-none mb-1">Download Manual</p>

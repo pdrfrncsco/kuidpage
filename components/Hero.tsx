@@ -30,9 +30,12 @@ const Hero: React.FC = () => {
               <button className="w-full sm:w-auto px-10 py-5 bg-kuid-gradient hover:opacity-90 text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 shadow-2xl shadow-kuid-cyan/30 transform hover:-translate-y-1">
                 Criar meu KUID <ChevronRight size={22} />
               </button>
-              <button className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm">
+              <a 
+                href="https://github.com/pdrfrncsco/kuid-app/releases/download/v1.0.1/kuidapp-beta-v1-0-1.apk" 
+                className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm transform hover:-translate-y-1"
+              >
                 <Smartphone size={22} /> Baixar App
-              </button>
+              </a>
             </div>
           </div>
 
