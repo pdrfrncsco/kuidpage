@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade | KUID - Endereçamento Digital</title>
+    <meta name="description" content="Política de Privacidade do KUID. Saiba como recolhemos, usamos e protegemos os seus dados pessoais na nossa plataforma de endereçamento digital.">
+    <meta name="keywords" content="privacidade, dados pessoais, proteção de dados, KUID, endereçamento digital, termos legais, segurança">
+    <meta name="author" content="NdeasCloud">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kuid.ndeas.cloud/privacy">
+    <meta property="og:title" content="Política de Privacidade | KUID">
+    <meta property="og:description" content="Saiba como protegemos os seus dados no KUID. Transparência e segurança em primeiro lugar.">
+    <meta property="og:image" content="https://kuid.ndeas.cloud/kuidapp.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kuid.ndeas.cloud/privacy">
+    <meta property="twitter:title" content="Política de Privacidade | KUID">
+    <meta property="twitter:description" content="Saiba como protegemos os seus dados no KUID. Transparência e segurança em primeiro lugar.">
+    <meta property="twitter:image" content="https://kuid.ndeas.cloud/kuidapp.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'kuid-blue': '#0047FF',
+              'kuid-cyan': '#00D1FF',
+              'kuid-green': '#00FFB2',
+              'deep-navy': '#020617',
+              'slate-850': '#1e293b',
+            },
+            backgroundImage: {
+              'kuid-gradient': 'linear-gradient(135deg, #0047FF 0%, #00D1FF 50%, #00FFB2 100%)',
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f1f5f9;
+        }
+        .bg-grid {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 209, 255, 0.07) 1px, transparent 0);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+        }
+        .glass-header {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .sidebar-link.active {
+            color: #00D1FF;
+            border-left: 2px solid #00D1FF;
+            background: linear-gradient(90deg, rgba(0, 209, 255, 0.1) 0%, transparent 100%);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Política de Privacidade | KUID",
+      "description": "Política de Privacidade do KUID. Detalhes sobre recolha e proteção de dados.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "KUID",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kuid.ndeas.cloud/kuidapp.png"
+        }
+      },
+      "mainEntity": {
+        "@type": "LegalService",
+        "name": "Política de Privacidade",
+        "text": "Esta Política de Privacidade descreve como recolhemos, usamos e partilhamos as suas informações pessoais..."
+      }
+    }
+    </script>
+</head>
+<body class="bg-deep-navy bg-grid min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-header transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3 group">
+                <img src="/kuidapp.png" alt="KUID Logo" class="w-10 h-10 transition-transform group-hover:scale-110">
+                <span class="text-2xl font-black tracking-tighter text-white">KUID</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="/#problema" class="text-sm font-semibold text-slate-400 hover:text-kuid-cyan transition-colors">O Problema</a>
+                <a href="/#solucao" class="text-sm font-semibold text-slate-400 hover:text-kuid-cyan transition-colors">Solução</a>
+                <a href="/#como-funciona" class="text-sm font-semibold text-slate-400 hover:text-kuid-cyan transition-colors">Como Funciona</a>
+                <a href="https://app.kuid.ndeas.cloud" class="bg-kuid-gradient hover:opacity-90 text-white px-6 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105 shadow-lg shadow-kuid-cyan/20">
+                    Aceder à App
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button (Simple implementation) -->
+            <button class="md:hidden text-white p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-deep-navy border-t border-white/10 p-4 absolute w-full">
+            <div class="flex flex-col gap-4">
+                <a href="/#problema" class="text-slate-300 hover:text-white">O Problema</a>
+                <a href="/#solucao" class="text-slate-300 hover:text-white">Solução</a>
+                <a href="/#como-funciona" class="text-slate-300 hover:text-white">Como Funciona</a>
+                <a href="https://app.kuid.ndeas.cloud" class="text-kuid-cyan font-bold">Aceder à App</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-32 pb-20 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col lg:flex-row gap-12">
+                
+                <!-- Sidebar Navigation -->
+                <aside class="lg:w-1/4 hidden lg:block">
+                    <div class="sticky top-32 p-6 rounded-2xl bg-slate-900/50 border border-white/5 backdrop-blur-sm">
+                        <h3 class="text-lg font-bold text-white mb-6">Nesta página</h3>
+                        <nav class="flex flex-col space-y-1" id="toc-nav">
+                            <a href="#intro" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Introdução</a>
+                            <a href="#coleta" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Recolha de Dados</a>
+                            <a href="#uso" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Uso das Informações</a>
+                            <a href="#partilha" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Partilha de Dados</a>
+                            <a href="#seguranca" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Segurança</a>
+                            <a href="#direitos" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Seus Direitos</a>
+                            <a href="#cookies" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Cookies</a>
+                            <a href="#contato" class="sidebar-link px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors block border-l-2 border-transparent">Contacto</a>
+                        </nav>
+                    </div>
+                </aside>
+
+                <!-- Document Content -->
+                <article class="lg:w-3/4">
+                    <div class="mb-10">
+                        <h1 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Política de Privacidade</h1>
+                        <p class="text-slate-400">Última atualização: <span class="text-kuid-cyan">19 de Fevereiro de 2026</span></p>
+                    </div>
+
+                    <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-12">
+                        
+                        <section id="intro" class="scroll-mt-32">
+                            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                                <span class="bg-white/10 p-2 rounded-lg text-kuid-cyan">01</span>
+                                Introdução
+                            </h2>
+                            <p class="leading-relaxed">
+                                Bem-vindo ao KUID. A sua privacidade é de extrema importância para nós. Esta Política de Privacidade explica como a NdeasCloud ("nós", "nosso") recolhe, usa, divulga e protege as suas informações quando utiliza a nossa aplicação móvel e website (coletivamente, o "Serviço").
+                            </p>
+                            <p class="leading-relaxed mt-4">
+                                Ao utilizar o KUID, concorda com a recolha e uso de informações de acordo com esta política. Se não concordar com os termos desta política, por favor não aceda nem utilize o nosso Serviço.
+                            </p>
+                        </section>
+
+                        <section id="coleta" class="scroll-mt-32">
+                            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                                <span class="bg-white/10 p-2 rounded-lg text-kuid-cyan">02</span>
+                                Recolha de Dados
+                            </h2>
+                            <p class="mb-4">Recolhemos vários tipos de informações para fornecer e melhorar o nosso Serviço:</p>
+                            <ul class="list-disc pl-6 space-y-2 marker:text-kuid-green">
+                                <li><strong>Informações Pessoais:</strong> Nome, endereço de e-mail, número de telefone e dados de localização que nos fornece voluntariamente ao registar-se.</li>
+                                <li><strong>Dados de Localização:</strong> Coordenadas GPS precisas para gerar e validar o seu código KUID.</li>
+                                <li><strong>Dados de Uso:</strong> Informações sobre como acede e usa o Serviço, incluindo tipo de dispositivo, endereço IP e páginas visitadas.</li>
+                            </ul>
+                        </section>
+
+                        <section id="uso" class="scroll-mt-32">
+                            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                                <span class="bg-white/10 p-2 rounded-lg text-kuid-cyan">03</span>
+                                Uso das Informações
+                            </h2>
+                            <p class="mb-4">Utilizamos os dados recolhidos para diversas finalidades:</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                                    <h3 class="font-bold text-white mb-2">Fornecimento do Serviço</h3>
+                                    <p class="text-sm">Para criar, gerir e validar o seu endereço digital KUID.</p>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                                    <h3 class="font-bold text-white mb-2">Comunicação</h3>
+                                    <p class="text-sm">Para enviar atualizações, alertas de segurança e suporte técnico.</p>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                                    <h3 class="font-bold text-white mb-2">Melhoria Contínua</h3>
+                                    <p class="text-sm">Para analisar o uso e melhorar a funcionalidade e experiência do utilizador.</p>
+                                </div>
+                                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                                    <h3 class="font-bold text-white mb-2">Segurança</h3>
+                                    <p class="text-sm">Para detetar, prevenir e resolver problemas técnicos ou fraudes.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="partilha" class="scroll-mt-32">
+                            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                                <span class="bg-white/10 p-2 rounded-lg text-kuid-cyan">04</span>
+                                Partilha de Dados
+                            </h2>
+                            <p>
+                                Não vendemos as suas informações pessoais a terceiros. Podemos partilhar os seus dados apenas nas seguintes circunstâncias:
+                            </p>
+                            <ul class="list-disc pl-6 mt-4 space-y-2 marker:text-kuid-green">
+                                <li><strong>Com consentimento:</strong> Quando nos autoriza explicitamente a partilhar.</li>
+                                <li><strong>Obrigação Legal:</strong> Para cumprir leis, regulamentos ou ordens judiciais aplicáveis.</li>
+                                <li><strong>Prestadores de Serviço:</strong> Terceiros que nos ajudam a operar o Serviço (ex: alojamento, análise), sob rigorosos acordos de confidencialidade.</li>
+                            </ul>
+                        </section>
+
+                        <section id="seguranca" class="scroll-mt-32">
+                            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                                <span class="bg-white/10 p-2 rounded-lg text-kuid-cyan">05</span>
+                                Segurança
+                            </h2>
+                            <p class="leading-relaxed">
+                                A segurança dos seus dados é importante para nós. Implementamos medidas técnicas e organizacionais adequadas para proteger as suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição. No entanto, lembre-se que nenhum método de transmissão pela Internet é 100% seguro.
+                            </p>
+                        </section>
+
+                        <section id="direitos" class="scroll-mt-32">
+                            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                                <span class="bg-white/10 p-2 rounded-lg text-kuid-cyan">06</span>
+                                Seus Direitos
+                            </h2>
+                            <p class="mb-4">Como utilizador, tem o direito de:</p>
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-kuid-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span>Aceder aos seus dados pessoais que possuímos.</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-kuid-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span>Solicitar a correção de dados incorretos.</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-kuid-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span>Solicitar a eliminação dos seus dados ("Direito a ser esquecido").</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-kuid-green flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span>Retirar o consentimento a qualquer momento.</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="contato" class="scroll-mt-32">
+                            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                                <span class="bg-white/10 p-2 rounded-lg text-kuid-cyan">07</span>
+                                Contacto
+                            </h2>
+                            <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                                <p class="mb-6">Se tiver dúvidas sobre esta Política de Privacidade, entre em contacto connosco:</p>
+                                <ul class="space-y-4">
+                                    <li class="flex items-center gap-3 text-slate-300">
+                                        <svg class="w-5 h-5 text-kuid-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                        <a href="mailto:ndeasdigital@gmail.com" class="hover:text-white transition-colors">ndeasdigital@gmail.com</a>
+                                    </li>
+                                    <li class="flex items-center gap-3 text-slate-300">
+                                        <svg class="w-5 h-5 text-kuid-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        <span>Luanda, Angola (AO-LUA-LUA-EEJT)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-white/5 pt-20 pb-10 mt-auto">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="/kuid-white.png" alt="KUID Logo" class="w-10 h-10">
+                        <span class="text-2xl font-extrabold tracking-tight text-white">KUID</span>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                        Identidade digital de endereçamento para um mundo sem barreiras geográficas.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-slate-500 hover:text-kuid-green transition-colors" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="text-slate-500 hover:text-kuid-green transition-colors" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="#" class="text-slate-500 hover:text-kuid-green transition-colors" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="text-slate-500 hover:text-kuid-green transition-colors" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Empresa</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="/#about" class="hover:text-kuid-green transition-colors">Sobre Nós</a></li>
+                        <li><a href="/terms/" class="hover:text-kuid-green transition-colors">Termos e Condições</a></li>
+                        <li><a href="/privacy/" class="hover:text-kuid-green transition-colors text-white">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Contacto</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li class="flex items-center gap-3">
+                            <span>ndeasdigital@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-600 text-xs">
+                    © 2026 KUID Endereçamento Digital. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Spy Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
