@@ -1,36 +1,48 @@
-
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Problem from './components/Problem';
-import Solution from './components/Solution';
-import HowItWorks from './components/HowItWorks';
-import Features from './components/Features';
-import TargetAudience from './components/TargetAudience';
-import Download from './components/Download';
-import Vision from './components/Vision';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import ScrollToTop from './components/ScrollToTop';
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
+  const location = useLocation();
+
   useEffect(() => {
-    // Reveal animation observer logic can be added here if needed
-  }, []);
+    // Check if there's a hash in the URL and scroll to it
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
-    <div className="min-h-screen bg-deep-blue bg-grid selection:bg-tech-green selection:text-white">
+    <div className="min-h-screen bg-deep-blue bg-grid selection:bg-tech-green selection:text-white flex flex-col">
       <Header />
-      <main>
-        <Hero />
-        <Problem />
-        <Solution />
-        <HowItWorks />
-        <Features />
-        <TargetAudience />
-        <Download />
-        <Vision />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+        </Routes>
       </main>
       <Footer />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <ScrollToTop />
+      <AppContent />
+    </Router>
   );
 };
 

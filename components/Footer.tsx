@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Mail } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -26,8 +27,8 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Plataforma</h4>
             <ul className="space-y-4 text-sm text-slate-500">
-              <li><a href="#" className="hover:text-tech-green transition-colors">Como Funciona</a></li>
-              <li><a href="#" className="hover:text-tech-green transition-colors">Funcionalidades</a></li>
+              <li><Link to="/#como-funciona" className="hover:text-tech-green transition-colors">Como Funciona</Link></li>
+              <li><Link to="/#funcionalidades" className="hover:text-tech-green transition-colors">Funcionalidades</Link></li>
               <li><a href="#" className="hover:text-tech-green transition-colors">API para Integração</a></li>
               <li><a href="#" className="hover:text-tech-green transition-colors">Casos de Uso</a></li>
             </ul>
@@ -37,8 +38,8 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-bold mb-6">Empresa</h4>
             <ul className="space-y-4 text-sm text-slate-500">
               <li><a href="#" className="hover:text-tech-green transition-colors">Sobre Nós</a></li>
-              <li><a href="#" className="hover:text-tech-green transition-colors">Termos e Condições</a></li>
-              <li><a href="#" className="hover:text-tech-green transition-colors">Política de Privacidade</a></li>
+              <li><Link to="/terms" className="hover:text-tech-green transition-colors">Termos e Condições</Link></li>
+              <li><Link to="/privacy" className="hover:text-tech-green transition-colors">Política de Privacidade</Link></li>
               <li><a href="#" className="hover:text-tech-green transition-colors">Trabalhe Connosco</a></li>
             </ul>
           </div>
