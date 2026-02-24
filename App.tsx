@@ -23,7 +23,7 @@ const AppContent: React.FC = () => {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-deep-blue bg-grid selection:bg-tech-green selection:text-white flex flex-col">
+    <div className="min-h-screen bg-light-bg dark:bg-deep-navy bg-grid selection:bg-tech-green selection:text-white flex flex-col transition-colors duration-300">
       <Header />
       <main className="flex-grow">
         <Routes>

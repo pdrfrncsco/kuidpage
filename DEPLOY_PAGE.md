@@ -38,7 +38,7 @@ Para iniciar a aplicação em produção:
    docker-compose up -d --build
    ```
 
-A aplicação estará disponível na porta 80 do host (ou na porta definida no `docker-compose.yml`).
+A aplicação estará disponível na porta 8080 do host (ou na porta definida no `docker-compose.yml`).
 
 ## Configuração de Domínio e SSL
 

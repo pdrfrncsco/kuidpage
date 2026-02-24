@@ -17,12 +17,12 @@ const Hero: React.FC = () => {
               <span className="text-[10px] font-black text-kuid-cyan uppercase tracking-[0.2em]">O Futuro é agora</span>
             </div>
             
-            <h1 className="text-5xl lg:text-8xl font-black text-white leading-[0.95] mb-8 tracking-tighter">
+            <h1 className="text-5xl lg:text-8xl font-black text-gray-900 dark:text-white leading-[0.95] mb-8 tracking-tighter">
               A Identidade <br />
               <span className="text-gradient">Do Seu Lugar</span>
             </h1>
             
-            <p className="text-lg lg:text-xl text-slate-400 max-w-xl mb-12 leading-relaxed">
+            <p className="text-lg lg:text-xl text-gray-600 dark:text-slate-400 max-w-xl mb-12 leading-relaxed">
               Crie, partilhe e localize qualquer lugar com um código simples, permanente e georreferenciado. Mais que um endereço, é a sua presença digital no mapa.
             </p>
             
@@ -31,8 +31,8 @@ const Hero: React.FC = () => {
                 Criar meu KUID <ChevronRight size={22} />
               </button>
               <a 
-                href="https://github.com/pdrfrncsco/kuid-app/releases/download/v1.0.1/kuidapp-beta-v1-0-1.apk" 
-                className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm transform hover:-translate-y-1"
+                href="#" 
+                className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm transform hover:-translate-y-1"
               >
                 <Smartphone size={22} /> Baixar App
               </a>
@@ -40,32 +40,13 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="flex-1 w-full max-w-md lg:max-w-none relative animate-float">
-            <div className="relative z-10 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[40px] p-2 shadow-2xl overflow-hidden">
-              <div className="bg-deep-navy rounded-[32px] overflow-hidden aspect-square flex flex-col items-center justify-center p-12 relative group">
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-                
-                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center">
-                  <div className="relative mb-12">
-                    <div className="absolute inset-0 bg-kuid-gradient blur-3xl opacity-30 animate-pulse"></div>
-                    <MapPin className="w-24 h-24 text-white p-6 bg-kuid-gradient rounded-3xl drop-shadow-[0_0_20px_rgba(0,209,255,0.6)]" />
-                  </div>
-                  
-                  <div className="w-full space-y-4">
-                    <p className="text-kuid-cyan text-xs font-black uppercase tracking-[0.3em]">Endereço Digital Único</p>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 transition-all group-hover:border-kuid-green/50">
-                      {/* <span className="text-3xl lg:text-4xl font-mono font-black text-white tracking-[0.2em]">
-                        AO-LUA-LUA
-                      </span> */}
-                      <span className="block text-2xl lg:text-3xl font-mono font-black text-kuid-green tracking-[0.2em] mt-1">
-                        AO-LUA-LUA-QJLK
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2 text-slate-500 font-medium">
-                      <div className="w-2 h-2 rounded-full bg-kuid-green"></div>
-                      <p className="text-xs uppercase tracking-widest">Localização Verificada</p>
-                    </div>
-                  </div>
-                </div>
+            <div className="relative z-10 bg-white/80 dark:bg-white/5 backdrop-blur-3xl border border-gray-200 dark:border-white/10 rounded-[40px] p-2 shadow-2xl overflow-hidden">
+              <div className="bg-gray-100 dark:bg-deep-navy rounded-[32px] overflow-hidden aspect-square flex flex-col items-center justify-center relative group">
+                <img 
+                  src="/kuidsuccess.png" 
+                  alt="KUID Sucesso" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             

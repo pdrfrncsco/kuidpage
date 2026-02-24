@@ -6,7 +6,7 @@ const TargetAudience: React.FC = () => {
   const groups = [
     {
       title: "Pessoas sem endereço formal",
-      desc: "Ganhe uma identidade geográfica para receber visitas e encomendas.",
+      desc: "Ganhe uma identidade geográfica para receber visitas e encomendas sem preocupações.",
       icon: <User className="w-10 h-10" />,
       tag: "Social"
     },
@@ -31,25 +31,25 @@ const TargetAudience: React.FC = () => {
   ];
 
   return (
-    <section id="para-quem" className="py-24">
+    <section id="para-quem" className="py-24 transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">Para Quem é a KUID?</h2>
-          <p className="text-slate-400">Uma solução transversal para toda a sociedade.</p>
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Para Quem é a KUID?</h2>
+          <p className="text-gray-600 dark:text-slate-400">Uma solução transversal para toda a sociedade.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {groups.map((group, i) => (
-            <div key={i} className="flex flex-col sm:flex-row items-start gap-8 p-10 rounded-3xl bg-slate-900/50 border border-white/5 hover:bg-slate-900 transition-colors group">
-              <div className="bg-tech-green/10 text-tech-green p-6 rounded-2xl group-hover:scale-110 transition-transform">
+            <div key={i} className="flex flex-col sm:flex-row items-start gap-8 p-10 rounded-3xl bg-white dark:bg-slate-900/50 border border-gray-200 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-slate-900 transition-colors group shadow-lg dark:shadow-none">
+              <div className="bg-kuid-green/10 text-kuid-green p-6 rounded-2xl group-hover:scale-110 transition-transform">
                 {group.icon}
               </div>
               <div>
-                <span className="text-xs font-bold text-tech-green uppercase tracking-widest bg-tech-green/5 px-3 py-1 rounded-full mb-4 inline-block">
+                <span className="text-xs font-bold text-kuid-green uppercase tracking-widest bg-kuid-green/5 px-3 py-1 rounded-full mb-4 inline-block">
                   {group.tag}
                 </span>
-                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">{group.title}</h3>
-                <p className="text-slate-400 leading-relaxed italic">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">{group.title}</h3>
+                <p className="text-gray-600 dark:text-slate-400 leading-relaxed italic">
                   "{group.desc}"
                 </p>
               </div>
