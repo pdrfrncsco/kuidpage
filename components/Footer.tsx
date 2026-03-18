@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-gray-900 dark:text-white font-bold mb-6 transition-colors">Plataforma</h4>
+            <h4 className="text-gray-900 dark:text-white font-bold mb-6 transition-colors">Infraestrutura</h4>
             <ul className="space-y-4 text-sm text-gray-600 dark:text-slate-500">
               <li><Link to="/#como-funciona" className="hover:text-kuid-green transition-colors">Como Funciona</Link></li>
               <li><Link to="/#funcionalidades" className="hover:text-kuid-green transition-colors">Funcionalidades</Link></li>
@@ -34,12 +34,11 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-gray-900 dark:text-white font-bold mb-6 transition-colors">Empresa</h4>
+            <h4 className="text-gray-900 dark:text-white font-bold mb-6 transition-colors">Startup</h4>
             <ul className="space-y-4 text-sm text-gray-600 dark:text-slate-500">
               <li><a href="#" className="hover:text-kuid-green transition-colors">Sobre Nós</a></li>
               <li><Link to="/terms" className="hover:text-kuid-green transition-colors">Termos e Condições</Link></li>
               <li><Link to="/privacy" className="hover:text-kuid-green transition-colors">Política de Privacidade</Link></li>
-              <li><a href="#" className="hover:text-kuid-green transition-colors">Trabalhe Connosco</a></li>
             </ul>
           </div>
 
@@ -60,7 +59,7 @@ const Footer: React.FC = () => {
 
         <div className="pt-10 border-t border-gray-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 transition-colors">
           <p className="text-gray-500 dark:text-slate-600 text-xs">
-            © {new Date().getFullYear()} KUID Endereçamento Digital. Todos os direitos reservados.
+            © {new Date().getFullYear()} KUID - Endereçamento Digital. Todos os direitos reservados.
           </p>
           <p className="text-gray-500 dark:text-slate-600 text-xs flex items-center gap-2">
             Desenvolvido com <span className="text-kuid-green">❤</span> em Angola

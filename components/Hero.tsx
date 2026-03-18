@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
                 Criar meu KUID <ChevronRight size={22} />
               </button>
               <a 
-                href="#" 
+                href="https://play.google.com/store/apps/details?id=com.ndeascloud.kuid" 
                 className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm transform hover:-translate-y-1"
               >
                 <Smartphone size={22} /> Baixar App
