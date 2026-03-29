@@ -21,6 +21,7 @@ const Header: React.FC = () => {
     { name: 'Solução', to: '/#solucao' },
     { name: 'Como Funciona', to: '/#como-funciona' },
     { name: 'Para Quem?', to: '/#para-quem' },
+    { name: 'Docs', to: '/docs' },
   ];
 
   return (
