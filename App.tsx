@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Docs from './pages/Docs';
+import Settings from './pages/Settings';
 import ScrollToTop from './components/ScrollToTop';
 
 const AppContent: React.FC = () => {
@@ -32,6 +33,7 @@ const AppContent: React.FC = () => {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/docs" element={<Docs />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>
       <Footer />
