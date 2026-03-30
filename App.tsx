@@ -7,7 +7,10 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Docs from './pages/Docs';
 import Settings from './pages/Settings';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import ScrollToTop from './components/ScrollToTop';
+import { AuthProvider } from './hooks/useAuth';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -33,6 +36,8 @@ const AppContent: React.FC = () => {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/docs" element={<Docs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>
@@ -44,8 +49,10 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <ScrollToTop />
-      <AppContent />
+      <AuthProvider>
+        <ScrollToTop />
+        <AppContent />
+      </AuthProvider>
     </Router>
   );
 };

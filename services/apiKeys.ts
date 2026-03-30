@@ -34,6 +34,13 @@ class ApiKeyService {
   }
 
   private handleResponse<T>(response: Response): Promise<T> {
+    if (response.status === 401) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+      throw new Error('Sessão expirada. Faça login novamente.');
+    }
     if (!response.ok) {
       return response.json().then(err => {
         throw new Error(err.error || err.message || `Error: ${response.status}`);
@@ -46,6 +53,11 @@ class ApiKeyService {
   }
 
   async getApiKeys(): Promise<ApiKey[]> {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      throw new Error('Não autenticado');
+    }
+    
     const response = await fetch(`${API_BASE_URL}/api/v1/auth/api-keys/`, {
       method: 'GET',
       headers: this.getHeaders(),
@@ -54,6 +66,11 @@ class ApiKeyService {
   }
 
   async createApiKey(data: ApiKeyCreateRequest): Promise<ApiKey> {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      throw new Error('Não autenticado');
+    }
+    
     const response = await fetch(`${API_BASE_URL}/api/v1/auth/api-keys/`, {
       method: 'POST',
       headers: this.getHeaders(),
@@ -63,6 +80,11 @@ class ApiKeyService {
   }
 
   async revokeApiKey(id: number): Promise<void> {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      throw new Error('Não autenticado');
+    }
+    
     const response = await fetch(`${API_BASE_URL}/api/v1/auth/api-keys/${id}/revoke/`, {
       method: 'DELETE',
       headers: this.getHeaders(),

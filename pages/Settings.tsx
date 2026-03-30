@@ -1,11 +1,33 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { User, Key, Bell, Shield, LogOut } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 import ApiKeyManager from '../components/settings/ApiKeyManager';
 
 type TabType = 'profile' | 'api-keys' | 'notifications' | 'security';
 
 const Settings: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('api-keys');
+  const { isAuthenticated, logout, isLoading } = useAuth();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, isLoading, navigate]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-light-bg dark:bg-deep-navy flex items-center justify-center pt-24">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-tech-green"></div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   const tabs = [
     { id: 'profile', label: 'Perfil', icon: User },
@@ -54,7 +76,13 @@ const Settings: React.FC = () => {
                 Funcionalidade em breve...
               </p>
             </div>
-            <button className="flex items-center justify-center gap-2 w-full px-4 py-2 border border-red-300 dark:border-red-700 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors">
+            <button 
+              onClick={() => {
+                logout();
+                navigate('/');
+              }}
+              className="flex items-center justify-center gap-2 w-full px-4 py-2 border border-red-300 dark:border-red-700 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
+            >
               <LogOut className="w-4 h-4" />
               Terminar Sessão
             </button>

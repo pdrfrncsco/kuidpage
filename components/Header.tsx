@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, MapPin } from 'lucide-react';
+import { Menu, X, MapPin, User, LogOut } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { useAuth } from '../hooks/useAuth';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { isAuthenticated, user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +24,6 @@ const Header: React.FC = () => {
     { name: 'Como Funciona', to: '/#como-funciona' },
     { name: 'Para Quem?', to: '/#para-quem' },
     { name: 'Docs', to: '/docs' },
-    { name: 'Settings', to: '/settings' },
   ];
 
   return (
@@ -43,10 +44,31 @@ const Header: React.FC = () => {
               {item.name}
             </Link>
           ))}
+          {isAuthenticated ? (
+            <>
+              <Link to="/settings" className="flex items-center gap-2 text-sm font-semibold text-gray-600 dark:text-slate-400 hover:text-kuid-cyan">
+                <User className="w-4 h-4" />
+                {user?.first_name || user?.username}
+              </Link>
+              <button
+                onClick={logout}
+                className="p-2 text-gray-600 dark:text-slate-400 hover:text-red-600 transition-colors"
+                title="Sair"
+              >
+                <LogOut className="w-5 h-5" />
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="text-sm font-semibold text-gray-600 dark:text-slate-400 hover:text-kuid-cyan">
+                Entrar
+              </Link>
+              <Link to="/register" className="bg-kuid-gradient hover:opacity-90 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-kuid-cyan/20">
+                Criar Conta
+              </Link>
+            </>
+          )}
           <ThemeToggle />
-          <button className="bg-kuid-gradient hover:opacity-90 text-white px-7 py-2.5 rounded-full text-sm font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-kuid-cyan/20">
-            Criar meu KUID
-          </button>
         </nav>
 
         <div className="md:hidden flex items-center gap-4">
@@ -69,9 +91,45 @@ const Header: React.FC = () => {
               {item.name}
             </Link>
           ))}
-          <button className="bg-kuid-gradient text-white px-6 py-4 rounded-xl text-lg font-bold">
-            Criar meu KUID
-          </button>
+          {isAuthenticated ? (
+            <>
+              <Link 
+                to="/settings" 
+                className="text-lg font-medium text-gray-700 dark:text-slate-300"
+                onClick={() => setIsOpen(false)}
+              >
+                <User className="w-5 h-5 inline mr-2" />
+                {user?.first_name || user?.username}
+              </Link>
+              <button
+                onClick={() => {
+                  logout();
+                  setIsOpen(false);
+                }}
+                className="text-lg font-medium text-red-600"
+              >
+                <LogOut className="w-5 h-5 inline mr-2" />
+                Sair
+              </button>
+            </>
+          ) : (
+            <>
+              <Link 
+                to="/login" 
+                className="text-lg font-medium text-gray-700 dark:text-slate-300"
+                onClick={() => setIsOpen(false)}
+              >
+                Entrar
+              </Link>
+              <Link 
+                to="/register" 
+                className="bg-kuid-gradient text-white px-6 py-4 rounded-xl text-lg font-bold text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Criar Conta
+              </Link>
+            </>
+          )}
         </div>
       )}
     </header>
