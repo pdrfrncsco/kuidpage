@@ -1,4 +1,7 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+import { API_CONFIG } from './api';
+
+const AUTH_API_BASE_URL = API_CONFIG.authBase;
+const TOKEN_REFRESH_URL = API_CONFIG.tokenRefreshUrl;
 
 export interface User {
   id: number;
@@ -63,7 +66,7 @@ class AuthService {
   }
 
   async register(data: RegisterData): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/api/v1/auth/register/`, {
+    const response = await fetch(`${AUTH_API_BASE_URL}/register/`, {
       method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(data),
@@ -80,7 +83,7 @@ class AuthService {
   }
 
   async login(data: LoginData): Promise<AuthResponse> {
-    const response = await fetch(`${API_BASE_URL}/api/v1/auth/login/`, {
+    const response = await fetch(`${AUTH_API_BASE_URL}/login/`, {
       method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(data),
@@ -125,7 +128,7 @@ class AuthService {
     if (!refresh) return null;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/token/refresh/`, {
+      const response = await fetch(TOKEN_REFRESH_URL, {
         method: 'POST',
         headers: this.getHeaders(),
         body: JSON.stringify({ refresh }),

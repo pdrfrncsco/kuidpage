@@ -1,91 +1,93 @@
-# Guia de Deploy - Landing Page (KUID)
+# Guia de Deploy - KuidPage
 
-Este guia descreve como preparar e implantar a landing page do KUID em produção.
+Este frontend faz build estático com Vite. Em produção, a configuração crítica é a variável `VITE_API_URL`, definida no momento do build.
 
-## Pré-requisitos
+## Estratégia de API
 
-- Docker e Docker Compose instalados.
-- Domínio configurado: `kuid.ndeas.cloud`.
+Há dois cenários suportados.
 
-## Estrutura
+1. Backend em domínio separado
+   Exemplo:
+   - frontend: `https://kuid.ndeas.cloud`
+   - backend: `https://kuidapi.ndeas.cloud`
 
-O projeto utiliza:
-- **Vite + React**: Para construção da interface.
-- **Nginx**: Para servir os arquivos estáticos de forma performática.
-- **Docker**: Para containerização.
+   Use:
 
-## Configuração
-
-1. **Arquivos de Configuração**:
-   - `Dockerfile`: Define a construção da imagem (build do React -> imagem Nginx).
-   - `nginx.conf`: Configuração do servidor web (gzip, cache, rotas).
-   - `docker-compose.yml`: Orquestração do container.
-
-2. **Variáveis de Ambiente**:
-   O build é estático, então variáveis de ambiente devem ser definidas no momento do build (no `Dockerfile` ou via argumentos de build), mas para esta landing page simples, não há dependências críticas de env vars em tempo de execução.
-
-## Deploy com Docker Compose
-
-Para iniciar a aplicação em produção:
-
-1. Navegue até o diretório `kuidpage`:
-   ```bash
-   cd kuidpage
+   ```env
+   VITE_API_URL=https://kuidapi.ndeas.cloud
    ```
 
-2. Construa e inicie o container:
-   ```bash
-   docker-compose up -d --build
+2. Frontend e backend no mesmo domínio com proxy reverso
+   Exemplo:
+   - frontend: `https://kuid.ndeas.cloud`
+   - Nginx/Traefik faz proxy de `/api/` para o Django
+
+   Use:
+
+   ```env
+   VITE_API_URL=
    ```
 
-A aplicação estará disponível na porta 8080 do host (ou na porta definida no `docker-compose.yml`).
+   Ou omita a variável por completo. Nesse caso, o frontend chamará caminhos relativos como `/api/v1/addresses`.
 
-## Configuração de Domínio e SSL
+## Arquivos de ambiente
 
-Para produção com HTTPS (`https://kuid.ndeas.cloud`), recomenda-se usar um proxy reverso (como Nginx no host ou Traefik) para gerenciar os certificados SSL e encaminhar o tráfego para o container.
+- Desenvolvimento local: `.env.local`
+- Produção: `.env.production`
+- Exemplo versionado: `.env.production.example`
 
-Exemplo de configuração de proxy reverso (Nginx no host):
+Não use `.env.local` em produção.
 
-```nginx
-server {
-    listen 80;
-    server_name kuid.ndeas.cloud;
-    return 301 https://$host$request_uri;
-}
+## Endpoints usados pelo frontend
 
-server {
-    listen 443 ssl;
-    server_name kuid.ndeas.cloud;
+Com `VITE_API_URL=https://kuidapi.ndeas.cloud`, o frontend monta:
 
-    ssl_certificate /caminho/para/certificado.pem;
-    ssl_certificate_key /caminho/para/chave.pem;
+- `https://kuidapi.ndeas.cloud/api/v1/addresses/...`
+- `https://kuidapi.ndeas.cloud/api/v1/auth/...`
+- `https://kuidapi.ndeas.cloud/api/token/refresh/`
 
+Com `VITE_API_URL` vazio ou omitido em produção, o frontend usa:
 
-## Opção 2: Deploy Nativo com Nginx (Sem Docker)
+- `/api/v1/addresses/...`
+- `/api/v1/auth/...`
+- `/api/token/refresh/`
 
-Se preferir rodar diretamente no servidor (bare metal/VM) com Nginx instalado:
+## Build local para produção
 
-1.  **Build da Aplicação**:
-    No seu ambiente local ou CI:
-    ```bash
-    npm install
-    npm run build
-    ```
-    Isso gerará a pasta `dist`.
+```bash
+cd kuidpage
+cp .env.production.example .env.production
+npm install
+npm run build
+```
 
-2.  **Transferência de Arquivos**:
-    Copie o conteúdo da pasta `dist` para o servidor (ex: `/var/www/kukuid/kuidpage/dist`).
+## Docker
 
-3.  **Configuração do Nginx**:
-    Copie o arquivo `kuidapp.conf` para `/etc/nginx/sites-available/kuidapp.conf`.
-    
-    ```bash
-    # No servidor:
-    sudo cp kuidapp.conf /etc/nginx/sites-available/
-    sudo ln -s /etc/nginx/sites-available/kuidapp.conf /etc/nginx/sites-enabled/
-    sudo nginx -t
-    sudo systemctl reload nginx
-    ```
+O `Dockerfile` faz build do Vite e serve os arquivos estáticos com Nginx.
 
-    *Nota: O arquivo `kuidapp.conf` já inclui regras de cache otimizadas e redirecionamento HTTPS para Cloudflare.*
+Se precisar injetar `VITE_API_URL` no build com Docker, passe a variável durante o build da imagem.
+
+Exemplo:
+
+```bash
+docker build --build-arg VITE_API_URL=https://kuidapi.ndeas.cloud -t kuidpage .
+```
+
+Se optar por isso, o `Dockerfile` deve consumir esse `ARG`. Se o build for feito fora do Docker, basta usar `.env.production`.
+
+## Nginx
+
+O `nginx.conf` atual serve apenas os arquivos estáticos da SPA. Ele não faz proxy de `/api`.
+
+Isso significa:
+
+- Se usar `VITE_API_URL=https://kuidapi.ndeas.cloud`, a configuração atual é suficiente.
+- Se quiser usar URLs relativas `/api/...`, será preciso adicionar proxy reverso no Nginx do ambiente ou no balanceador à frente dele.
+
+## Checklist de produção
+
+- Definir `VITE_API_URL` corretamente antes do build.
+- Confirmar que o backend aceita o origin do frontend em CORS, se estiver em domínio separado.
+- Confirmar HTTPS nos dois domínios.
+- Validar login, refresh token, geração de API key e lookup de KUID após o deploy.
 

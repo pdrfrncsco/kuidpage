@@ -3,7 +3,8 @@ import { BookOpen, Check, Code, Copy, ExternalLink, KeyRound, Shield, Workflow, 
 import KUIDDisplay from '../components/kuid/KUIDDisplay';
 import { useKUID } from '../hooks/useKuid';
 
-const API_BASE_URL = 'https://kuidapi.ndeas.cloud/api/v1';
+const INTERNAL_API_BASE_URL = '/api/v1/addresses';
+const EXTERNAL_API_BASE_URL = 'https://kuidapi.ndeas.cloud/api/v1';
 
 const CodeBlock: React.FC<{ code: string; language?: string }> = ({ code, language = 'bash' }) => {
   const [copied, setCopied] = useState(false);
@@ -31,11 +32,15 @@ const CodeBlock: React.FC<{ code: string; language?: string }> = ({ code, langua
 };
 
 const snippets = {
-  curlLookup: `curl -X GET "${API_BASE_URL}/addresses/AO-LUA-LUA-ZOLL/" \\
+  curlLookupInternal: `curl -X GET "http://localhost:8004${INTERNAL_API_BASE_URL}/AO-LUA-LUA-ZOLL/" \\
   -H "Authorization: ApiKey SUA_API_KEY" \\
   -H "Content-Type: application/json"`,
 
-  curlCreate: `curl -X POST "${API_BASE_URL}/addresses/" \\
+  curlLookupExternal: `curl -X GET "${EXTERNAL_API_BASE_URL}/addresses/AO-LUA-LUA-ZOLL/" \\
+  -H "Authorization: ApiKey SUA_API_KEY" \\
+  -H "Content-Type: application/json"`,
+
+  curlCreateInternal: `curl -X POST "http://localhost:8004${INTERNAL_API_BASE_URL}/" \\
   -H "Authorization: ApiKey SUA_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -47,13 +52,43 @@ const snippets = {
     "visibility": "public"
   }'`,
 
-  frontendEnv: `VITE_API_URL=https://kuidapi.ndeas.cloud/api/v1`,
+  curlCreateExternal: `curl -X POST "${EXTERNAL_API_BASE_URL}/addresses/" \\
+  -H "Authorization: ApiKey SUA_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "latitude": -8.9035,
+    "longitude": 13.2017,
+    "accuracy": 10,
+    "label": "Escritório Central",
+    "type": "commercial",
+    "visibility": "public"
+  }'`,
+
+  powershellLookup: `Invoke-WebRequest \`
+  -Uri "http://localhost:8004/api/v1/addresses/AO-LUA-LUA-ZOLL/" \`
+  -Method GET \`
+  -Headers @{
+    Authorization = "ApiKey SUA_API_KEY"
+    Accept = "application/json"
+  }`,
+
+  powershellLookupCurlExe: `curl.exe -X GET "http://localhost:8004/api/v1/addresses/AO-LUA-LUA-ZOLL/" ^
+  -H "Authorization: ApiKey SUA_API_KEY" ^
+  -H "Accept: application/json"`,
+
+  frontendEnv: `# Desenvolvimento com backend local
+# Se omitir esta variável, a app usa /api/v1/addresses por padrão
+VITE_API_URL=/api/v1/addresses
+
+# Se quiser consumir a API externa diretamente
+# VITE_API_URL=${EXTERNAL_API_BASE_URL}`,
 
   javascript: `const API_KEY = 'SUA_API_KEY';
 const KUID = 'AO-LUA-LUA-EEJT';
+const API_BASE_URL = '${INTERNAL_API_BASE_URL}';
 
 async function buscarEndereco() {
-  const response = await fetch(\`${API_BASE_URL}/addresses/\${KUID}/\`, {
+  const response = await fetch(\`${INTERNAL_API_BASE_URL}/\${KUID}/\`, {
     method: 'GET',
     headers: {
       'Authorization': \`ApiKey \${API_KEY}\`,
@@ -73,7 +108,7 @@ async function buscarEndereco() {
   python: `import requests
 
 API_KEY = "SUA_API_KEY"
-BASE_URL = "${API_BASE_URL}"
+BASE_URL = "http://localhost:8004${INTERNAL_API_BASE_URL}"
 
 headers = {
     "Authorization": f"ApiKey {API_KEY}",
@@ -81,7 +116,7 @@ headers = {
 }
 
 response = requests.get(
-    f"{API_BASE_URL}/addresses/AO-LUA-LUA-ZOLL/",
+    f"{BASE_URL}/AO-LUA-LUA-ZOLL/",
     headers=headers,
     timeout=30,
 )
@@ -156,27 +191,27 @@ const integrationSteps = [
 const endpointCards = [
   {
     method: 'GET',
-    path: '/addresses/{kuid}/',
-    description: 'Consulta um endereço KUID específico a partir do código.',
-    auth: 'Obrigatória',
+    path: '/api/v1/addresses/{kuid}/',
+    description: 'Consulta um endereço KUID guardado no banco local desta aplicação.',
+    auth: 'Pública para endereços públicos',
     success: '200 OK',
     errors: ['401 API Key inválida', '404 KUID não encontrado'],
   },
   {
     method: 'POST',
-    path: '/addresses/',
-    description: 'Cria um novo endereço KUID com base em coordenadas geográficas.',
-    auth: 'Obrigatória',
+    path: '/api/v1/addresses/',
+    description: 'Cria um novo endereço KUID no banco local desta aplicação.',
+    auth: 'Opcional, mas recomendada',
     success: '201 Created',
     errors: ['400 Dados inválidos', '401 API Key inválida', '429 Limite excedido'],
   },
   {
     method: 'GET',
-    path: '/addresses/?page=1&page_size=25',
-    description: 'Lista endereços cadastrados com paginação.',
+    path: '/api/v1/addresses/me/',
+    description: 'Lista os endereços do utilizador autenticado.',
     auth: 'Obrigatória',
     success: '200 OK',
-    errors: ['401 API Key inválida', '429 Limite excedido'],
+    errors: ['401 Não autenticado', '403 Sem permissão'],
   },
 ];
 
@@ -227,7 +262,7 @@ const Docs: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="rounded-2xl bg-gray-50 dark:bg-gray-900/50 p-5 border border-gray-100 dark:border-gray-700">
                   <p className="text-sm uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400 font-bold">Base URL</p>
-                  <p className="mt-2 text-gray-900 dark:text-white font-mono break-all">{API_BASE_URL}</p>
+                  <p className="mt-2 text-gray-900 dark:text-white font-mono break-all">{INTERNAL_API_BASE_URL}</p>
                 </div>
                 <div className="rounded-2xl bg-gray-50 dark:bg-gray-900/50 p-5 border border-gray-100 dark:border-gray-700">
                   <p className="text-sm uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400 font-bold">Autenticação</p>
@@ -259,12 +294,17 @@ const Docs: React.FC = () => {
                   O formato esperado é <span className="font-mono text-gray-900 dark:text-white">ApiKey SUA_API_KEY</span>.
                 </p>
                 <p>
-                  Em aplicações frontend controladas por si, pode configurar a URL base através da variável
-                  <span className="font-mono text-gray-900 dark:text-white"> VITE_API_URL</span>. Em integrações sensíveis, o recomendado é usar um backend
-                  intermediário para proteger a chave.
+                  Nesta aplicação, o frontend usa por padrão o backend local em
+                  <span className="font-mono text-gray-900 dark:text-white"> /api/v1/addresses</span>. Se quiser apontar diretamente para a API externa,
+                  pode configurar a variável <span className="font-mono text-gray-900 dark:text-white">VITE_API_URL</span>.
+                </p>
+                <p>
+                  Em Windows PowerShell, o comando <span className="font-mono text-gray-900 dark:text-white">curl</span> pode ser um alias de
+                  <span className="font-mono text-gray-900 dark:text-white"> Invoke-WebRequest</span>. Nessa situação, os headers devem ser enviados
+                  como dicionário, ou então deve usar <span className="font-mono text-gray-900 dark:text-white">curl.exe</span>.
                 </p>
                 <CodeBlock code={snippets.frontendEnv} language="env" />
-                <CodeBlock code={snippets.curlLookup} />
+                <CodeBlock code={snippets.curlLookupInternal} />
               </div>
             </section>
 
@@ -276,17 +316,18 @@ const Docs: React.FC = () => {
 
               <div className="space-y-4">
                 <div className="rounded-2xl border border-gray-200 dark:border-gray-700 p-5">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Frontend direto com a API</h3>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Frontend via backend local</h3>
                   <p className="mt-2 text-gray-600 dark:text-gray-300">
-                    Adequado para ambientes internos, protótipos ou apps controladas onde o risco de exposição é aceitável.
-                    A aplicação lê a chave, monta o header e chama a API KUID diretamente.
+                    Este é o modo atualmente usado pela app. O frontend chama os endpoints do Django em
+                    <span className="font-mono text-gray-900 dark:text-white"> /api/v1/addresses</span> e consulta diretamente o banco local da aplicação.
                   </p>
                 </div>
                 <div className="rounded-2xl border border-tech-green/30 bg-tech-green/5 p-5">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Backend proxy ou serviço intermediário</h3>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Consumo direto da API externa</h3>
                   <p className="mt-2 text-gray-700 dark:text-gray-200">
-                    Recomendado para produção. O frontend chama o seu backend, e o backend injeta a API Key ao comunicar com a KUID.
-                    Isto reduz exposição de credenciais, centraliza logs e facilita controlo de permissões.
+                    Só deve ser usado quando fizer sentido falar diretamente com
+                    <span className="font-mono text-gray-900 dark:text-white"> {EXTERNAL_API_BASE_URL}</span>.
+                    Nesse cenário, a proteção da chave passa a ser uma responsabilidade da sua arquitetura.
                   </p>
                 </div>
                 <CodeBlock code={snippets.djangoProxy} language="python" />
@@ -336,16 +377,32 @@ const Docs: React.FC = () => {
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Consultar um KUID com cURL</h3>
-                  <CodeBlock code={snippets.curlLookup} />
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Consultar um KUID no backend local</h3>
+                  <CodeBlock code={snippets.curlLookupInternal} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Criar um endereço com cURL</h3>
-                  <CodeBlock code={snippets.curlCreate} />
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Criar um endereço no backend local</h3>
+                  <CodeBlock code={snippets.curlCreateInternal} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Consultar a API externa diretamente</h3>
+                  <CodeBlock code={snippets.curlLookupExternal} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Criar na API externa diretamente</h3>
+                  <CodeBlock code={snippets.curlCreateExternal} />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">JavaScript / Fetch</h3>
                   <CodeBlock code={snippets.javascript} language="javascript" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">PowerShell / Invoke-WebRequest</h3>
+                  <CodeBlock code={snippets.powershellLookup} language="powershell" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">PowerShell com curl.exe</h3>
+                  <CodeBlock code={snippets.powershellLookupCurlExe} language="powershell" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Python / Requests</h3>

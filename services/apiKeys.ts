@@ -1,4 +1,6 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+import { API_CONFIG } from './api';
+
+const API_BASE_URL = API_CONFIG.authBase;
 
 export interface ApiKey {
   id: number;
@@ -58,7 +60,7 @@ class ApiKeyService {
       throw new Error('Não autenticado');
     }
     
-    const response = await fetch(`${API_BASE_URL}/api/v1/auth/api-keys/`, {
+    const response = await fetch(`${API_BASE_URL}/api-keys/`, {
       method: 'GET',
       headers: this.getHeaders(),
     });
@@ -71,7 +73,7 @@ class ApiKeyService {
       throw new Error('Não autenticado');
     }
     
-    const response = await fetch(`${API_BASE_URL}/api/v1/auth/api-keys/`, {
+    const response = await fetch(`${API_BASE_URL}/api-keys/`, {
       method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(data),
@@ -85,7 +87,7 @@ class ApiKeyService {
       throw new Error('Não autenticado');
     }
     
-    const response = await fetch(`${API_BASE_URL}/api/v1/auth/api-keys/${id}/revoke/`, {
+    const response = await fetch(`${API_BASE_URL}/api-keys/${id}/revoke/`, {
       method: 'DELETE',
       headers: this.getHeaders(),
     });
