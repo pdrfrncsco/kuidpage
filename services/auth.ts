@@ -56,7 +56,18 @@ class AuthService {
   private handleResponse<T>(response: Response): Promise<T> {
     if (!response.ok) {
       return response.json().then(err => {
-        throw new Error(err.error || err.message || `Error: ${response.status}`);
+        const nestedError = err?.error;
+        const message =
+          (typeof nestedError === 'string' ? nestedError : null) ||
+          nestedError?.message ||
+          err.message ||
+          err.detail ||
+          (Array.isArray(err.non_field_errors) ? err.non_field_errors[0] : null) ||
+          (Array.isArray(err.email) ? err.email[0] : null) ||
+          (Array.isArray(err.password) ? err.password[0] : null) ||
+          `Error: ${response.status}`;
+
+        throw new Error(message);
       });
     }
     if (response.status === 204) {
