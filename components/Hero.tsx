@@ -39,13 +39,13 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex-1 w-full max-w-md lg:max-w-none relative animate-float">
+          <div className="flex-1 w-full max-w-xl lg:max-w-none relative animate-float">
             <div className="relative z-10 bg-white/80 dark:bg-white/5 backdrop-blur-3xl border border-gray-200 dark:border-white/10 rounded-[40px] p-2 shadow-2xl overflow-hidden">
-              <div className="bg-gray-100 dark:bg-deep-navy rounded-[32px] overflow-hidden aspect-square flex flex-col items-center justify-center relative group">
+              <div className="bg-gray-100 dark:bg-deep-navy rounded-[32px] overflow-hidden aspect-[4/3] lg:aspect-[16/10] flex flex-col items-center justify-center relative group">
                 <img 
-                  src="/kuidsuccess.png" 
+                  src="/kuid-addresses.png" 
                   alt="KUID Sucesso" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
             </div>
