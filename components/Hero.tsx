@@ -17,9 +17,9 @@ const Hero: React.FC = () => {
               <span className="text-[10px] font-black text-kuid-cyan uppercase tracking-[0.2em]">O Futuro é agora</span>
             </div>
             
-            <h1 className="text-5xl lg:text-8xl font-black text-gray-900 dark:text-white leading-[0.95] mb-8 tracking-tighter">
+            <h1 className="text-5xl lg:text-8xl font-black text-gray-900 dark:text-slate-50 leading-[0.95] mb-8 tracking-tighter">
               A Identidade <br />
-              <span className="text-gradient">Do Seu Lugar</span>
+              <span className="text-gradient dark:drop-shadow-[0_0_18px_rgba(0,209,255,0.25)]">Do Seu Lugar</span>
             </h1>
             
             <p className="text-lg lg:text-xl text-gray-600 dark:text-slate-400 max-w-xl mb-12 leading-relaxed">
@@ -27,12 +27,12 @@ const Hero: React.FC = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5">
-              <button className="w-full sm:w-auto px-10 py-5 bg-kuid-gradient hover:opacity-90 text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 shadow-2xl shadow-kuid-cyan/30 transform hover:-translate-y-1">
+              <button className="w-full sm:w-auto px-10 py-5 bg-kuid-gradient hover:opacity-95 text-slate-950 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 shadow-2xl shadow-kuid-cyan/30 border border-white/40 transform hover:-translate-y-1">
                 Criar meu KUID <ChevronRight size={22} />
               </button>
               <a 
                 href="https://play.google.com/store/apps/details?id=com.ndeascloud.kuid" 
-                className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm transform hover:-translate-y-1"
+                className="w-full sm:w-auto px-10 py-5 bg-white/80 dark:bg-white/8 hover:bg-white dark:hover:bg-white/12 border border-gray-200 dark:border-white/15 text-gray-900 dark:text-slate-50 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 backdrop-blur-sm shadow-sm dark:shadow-none transform hover:-translate-y-1"
               >
                 <Smartphone size={22} /> Baixar App
               </a>

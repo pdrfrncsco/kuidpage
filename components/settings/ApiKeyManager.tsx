@@ -52,7 +52,7 @@ const ApiKeyModal: React.FC<ApiKeyModalProps> = ({ isOpen, onClose, apiKey }) =>
 
         <button
           onClick={copyKey}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-tech-green text-white rounded-lg hover:bg-tech-green/90 transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-kuid-gradient text-slate-950 dark:text-white rounded-xl hover:shadow-lg hover:shadow-kuid-cyan/20 transition-all font-bold border border-white/40 dark:border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
         >
           {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           {copied ? 'Copiado!' : 'Copiar para clipboard'}
@@ -83,14 +83,14 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm,
         <div className="flex gap-3">
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
           >
             Cancelar
           </button>
           <button
             onClick={onConfirm}
             disabled={loading}
-            className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+            className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
           >
             {loading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : 'Revogar'}
           </button>
@@ -203,7 +203,7 @@ const ApiKeyManager: React.FC = () => {
         {!showCreateForm && (
           <button
             onClick={() => setShowCreateForm(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-tech-green text-white rounded-lg hover:bg-tech-green/90 transition-colors"
+            className="flex items-center gap-2 px-4 py-3 bg-kuid-gradient text-slate-950 dark:text-white rounded-xl hover:shadow-lg hover:shadow-kuid-cyan/20 transition-all font-bold border border-white/40 dark:border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
           >
             <Plus className="w-4 h-4" />
             Nova API Key
@@ -251,14 +251,14 @@ const ApiKeyManager: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowCreateForm(false)}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={createLoading}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-tech-green text-white rounded-lg hover:bg-tech-green/90 transition-colors disabled:opacity-50"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-kuid-gradient text-slate-950 dark:text-white rounded-lg hover:shadow-lg hover:shadow-kuid-cyan/20 transition-all disabled:opacity-50 font-bold border border-white/40 dark:border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
             >
               {createLoading && <Loader2 className="w-4 h-4 animate-spin" />}
               Criar
@@ -278,7 +278,7 @@ const ApiKeyManager: React.FC = () => {
           </p>
           <button
             onClick={() => setShowCreateForm(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-tech-green text-white rounded-lg hover:bg-tech-green/90 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-3 bg-kuid-gradient text-slate-950 dark:text-white rounded-xl hover:shadow-lg hover:shadow-kuid-cyan/20 transition-all font-bold border border-white/40 dark:border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
           >
             <Plus className="w-4 h-4" />
             Criar API Key

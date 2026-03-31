@@ -22,7 +22,7 @@ const CodeBlock: React.FC<{ code: string; language?: string }> = ({ code, langua
       </pre>
       <button
         onClick={copyCode}
-        className="absolute top-2 right-2 p-2 bg-gray-800 hover:bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute top-2 right-2 p-2 bg-gray-800/95 hover:bg-gray-700 rounded-md opacity-100 md:opacity-0 md:group-hover:opacity-100 border border-gray-700 shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-green focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
         aria-label="Copiar código"
       >
         {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4 text-gray-300" />}
@@ -481,7 +481,7 @@ const Docs: React.FC = () => {
                 <button
                   onClick={() => lookupKUID(testKuid)}
                   disabled={loading}
-                  className="w-full px-4 py-3 bg-tech-green text-white rounded-xl hover:bg-tech-green/90 disabled:opacity-50 transition-colors font-semibold"
+                  className="w-full px-4 py-3 rounded-xl bg-kuid-gradient text-slate-950 hover:shadow-lg hover:shadow-kuid-cyan/20 disabled:opacity-50 disabled:hover:shadow-none transition-all font-bold border border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-light-bg dark:text-white dark:border-white/10 dark:focus-visible:ring-offset-gray-800"
                 >
                   {loading ? 'Consultando...' : 'Consultar KUID'}
                 </button>
@@ -507,7 +507,7 @@ const Docs: React.FC = () => {
               </p>
               <a
                 href="mailto:ndeasdigital@gmail.com"
-                className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white text-kuid-blue rounded-xl hover:bg-gray-100 transition-colors font-semibold"
+                className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white text-kuid-blue rounded-xl hover:bg-slate-100 transition-colors font-bold shadow-lg border border-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-kuid-blue"
               >
                 <ExternalLink className="w-4 h-4" />
                 Contactar suporte

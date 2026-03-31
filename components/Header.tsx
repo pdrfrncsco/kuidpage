@@ -23,7 +23,6 @@ const Header: React.FC = () => {
     { name: 'Solução', to: '/#solucao' },
     { name: 'Como Funciona', to: '/#como-funciona' },
     { name: 'Para Quem?', to: '/#para-quem' },
-    { name: 'Docs', to: '/docs' },
   ];
 
   return (
@@ -60,23 +59,29 @@ const Header: React.FC = () => {
             </>
           ) : (
             <>
-              <Link to="/login" className="text-sm font-semibold text-gray-600 dark:text-slate-400 hover:text-kuid-cyan">
+              <Link
+                to="/login"
+                className="px-4 py-2.5 rounded-full text-sm font-bold text-gray-800 dark:text-slate-100 border border-gray-300/90 dark:border-white/15 bg-white/80 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 hover:border-kuid-cyan/40 transition-all backdrop-blur-sm shadow-sm"
+              >
                 Entrar
               </Link>
-              <Link to="/register" className="bg-kuid-gradient hover:opacity-90 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-kuid-cyan/20">
+              <Link
+                to="/register"
+                className="bg-kuid-gradient hover:opacity-95 text-slate-950 px-5 py-2.5 rounded-full text-sm font-black transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-kuid-cyan/25 border border-white/40"
+              >
                 Criar Conta
               </Link>
             </>
           )}
-          <ThemeToggle />
+        
         </nav>
 
-        <div className="md:hidden flex items-center gap-4">
+        {/* <div className="md:hidden flex items-center gap-4">
           <ThemeToggle />
           <button className="text-gray-900 dark:text-white" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
-        </div>
+        </div> */}
       </div>
 
       {isOpen && (
@@ -116,14 +121,14 @@ const Header: React.FC = () => {
             <>
               <Link 
                 to="/login" 
-                className="text-lg font-medium text-gray-700 dark:text-slate-300"
+                className="text-lg font-semibold text-gray-800 dark:text-slate-100 border border-gray-300 dark:border-white/15 rounded-xl px-4 py-3 bg-white/80 dark:bg-white/5"
                 onClick={() => setIsOpen(false)}
               >
                 Entrar
               </Link>
               <Link 
                 to="/register" 
-                className="bg-kuid-gradient text-white px-6 py-4 rounded-xl text-lg font-bold text-center"
+                className="bg-kuid-gradient text-slate-950 px-6 py-4 rounded-xl text-lg font-black text-center border border-white/40 shadow-lg shadow-kuid-cyan/25"
                 onClick={() => setIsOpen(false)}
               >
                 Criar Conta

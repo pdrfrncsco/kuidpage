@@ -81,7 +81,7 @@ const Settings: React.FC = () => {
                 logout();
                 navigate('/');
               }}
-              className="flex items-center justify-center gap-2 w-full px-4 py-2 border border-red-300 dark:border-red-700 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
+              className="flex items-center justify-center gap-2 w-full px-4 py-3 border border-red-300 dark:border-red-700 text-red-700 dark:text-red-400 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors font-semibold shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
             >
               <LogOut className="w-4 h-4" />
               Terminar Sessão
@@ -106,17 +106,18 @@ const Settings: React.FC = () => {
             <nav className="bg-white dark:bg-gray-800 rounded-xl p-2 shadow-lg">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as TabType)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
-                      activeTab === tab.id
-                        ? 'bg-tech-green/10 text-tech-green'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all border font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kuid-blue focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800 ${
+                      isActive
+                        ? 'bg-kuid-gradient text-slate-950 border-transparent shadow-lg shadow-kuid-cyan/10 dark:text-white'
+                        : 'text-gray-700 dark:text-gray-300 border-transparent hover:bg-gray-100 hover:border-gray-200 dark:hover:bg-gray-700 dark:hover:border-gray-600'
                     }`}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className={`w-5 h-5 ${isActive ? 'text-inherit' : 'text-kuid-blue dark:text-kuid-cyan'}`} />
                     {tab.label}
                   </button>
                 );
